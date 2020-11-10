@@ -1,0 +1,25 @@
+#s-e3480c4d-d62a-4501-9eaa-33f66cc27fbe #s-Button_1 {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #CDCDCD;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #CDCDCD;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #CDCDCD;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #CDCDCD;
+  -pie-background: linear-gradient(to bottom,#FFFFFF,#E6E6E6);
+  -pie-poll: false;
+  -ms-transform: rotate(0.0deg);
+}
+#s-e3480c4d-d62a-4501-9eaa-33f66cc27fbe #s-Text_1 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-e3480c4d-d62a-4501-9eaa-33f66cc27fbe > #loadMark {
+  width: 1px;
+  visibility: hidden;
+  display: none;
+}

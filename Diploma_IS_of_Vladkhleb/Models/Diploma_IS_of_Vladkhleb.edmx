@@ -1,0 +1,2140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Diploma_DB_of_VladkhlebModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Брак">
+          <Key>
+            <PropertyRef Name="Код_брака" />
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Код_брака" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер_документа_о_браке" Type="int" />
+          <Property Name="Код_образца" Type="int" />
+          <Property Name="Код_продукции" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ГОСТ">
+          <Key>
+            <PropertyRef Name="Код_ГОСТа" />
+          </Key>
+          <Property Name="Код_ГОСТа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_ГОСТа" Type="varchar(max)" />
+          <Property Name="Количество_жиров" Type="int" />
+          <Property Name="Количество_углеводов" Type="int" />
+          <Property Name="Количество_белков" Type="int" />
+          <Property Name="Наименование_пищевых_добавок" Type="int" />
+          <Property Name="Количество_каллорий" Type="int" />
+        </EntityType>
+        <EntityType Name="Готовая_партия">
+          <Key>
+            <PropertyRef Name="Код_готовой_партии" />
+          </Key>
+          <Property Name="Код_готовой_партии" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_производственного_процесса" Type="int" Nullable="false" />
+          <Property Name="Дата_и_время_изготовления_гп" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Документ_Передача_брака_в_переработку">
+          <Key>
+            <PropertyRef Name="Номер_документа_о_браке" />
+            <PropertyRef Name="Код_образца" />
+          </Key>
+          <Property Name="Номер_документа_о_браке" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_образца" Type="int" Nullable="false" />
+          <Property Name="Дата_и_время_док_брак" Type="char" MaxLength="18" />
+        </EntityType>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="int" Nullable="false" />
+          <Property Name="Наименование_должности" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Заказ_на_выпускаемую_продукцию">
+          <Key>
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Код_заказа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_заказа" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Заявка_на_поставку_сырья">
+          <Key>
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Код_заявки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_заявки" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="Код_оборудования" />
+          </Key>
+          <Property Name="Код_работника" Type="int" />
+          <Property Name="Код_оборудования" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_оборудования" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Образец">
+          <Key>
+            <PropertyRef Name="Код_образца" />
+          </Key>
+          <Property Name="Код_образца" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_продукции" Type="int" />
+        </EntityType>
+        <EntityType Name="Подготовленное_сырье">
+          <Key>
+            <PropertyRef Name="Код_подготовленного_сырья" />
+          </Key>
+          <Property Name="Код_подготовленного_сырья" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_учета" Type="int" />
+          <Property Name="Номер_строки_учета_отпуска" Type="int" />
+          <Property Name="Код_заказа" Type="int" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="int" />
+          <Property Name="Наименование_подготовленного_сырья" Type="varchar(max)" />
+          <Property Name="Код_сырья" Type="int" />
+        </EntityType>
+        <EntityType Name="Поставщик">
+          <Key>
+            <PropertyRef Name="Код_поставщика" />
+          </Key>
+          <Property Name="Код_поставщика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_поставщика" Type="varchar(max)" />
+          <Property Name="Адрес" Type="varchar(max)" />
+          <Property Name="Телефон" Type="varchar(max)" />
+          <Property Name="ИНН" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Прогноз_для_нового_сырья">
+          <Key>
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_сырья" Type="int" Nullable="false" />
+          <Property Name="Количество_прогнозируемого_сырья" Type="int" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Код_продукции" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_готовой_партии" Type="int" />
+          <Property Name="Количество" Type="int" />
+          <Property Name="Цена" Type="int" />
+          <Property Name="Ед_измерения" Type="varchar(max)" />
+          <Property Name="НДС" Type="varchar(max)" />
+          <Property Name="Масса" Type="int" />
+          <Property Name="Дата_и_время_изготовления_пр" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Работник">
+          <Key>
+            <PropertyRef Name="Код_работника" />
+          </Key>
+          <Property Name="Код_работника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО_работника" Type="varchar(max)" />
+          <Property Name="Адрес" Type="varchar(max)" />
+          <Property Name="Телефон" Type="varchar(max)" />
+          <Property Name="Код_должности" Type="int" />
+          <Property Name="Номер_бригады" Type="int" />
+          <Property Name="Имя_пользователя" Type="varchar(max)" />
+          <Property Name="Пароль" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Разрешение_на_отправку">
+          <Key>
+            <PropertyRef Name="Код_разрешения_на_отправку" />
+          </Key>
+          <Property Name="Код_разрешения_на_отправку" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_образца" Type="int" />
+          <Property Name="Дата_и_время_РазрОтпр" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Строка_графика_работ">
+          <Key>
+            <PropertyRef Name="Номер_строки_графика_работ" />
+            <PropertyRef Name="Код_заказа" />
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+            <PropertyRef Name="Код_работника" />
+          </Key>
+          <Property Name="Номер_строки_графика_работ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Время_начала_смены" Type="time" Precision="7" />
+          <Property Name="Время_окончания_смены" Type="time" Precision="7" />
+          <Property Name="Код_заказа" Type="int" Nullable="false" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="int" Nullable="false" />
+          <Property Name="Код_производственного_процесса" Type="int" />
+          <Property Name="Код_работника" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Строка_заказа_на_выпускаемую_продукцию">
+          <Key>
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_заказа" Type="int" Nullable="false" />
+          <Property Name="Код_сырья" Type="int" />
+          <Property Name="Количество_выпускаемой_продукции" Type="int" />
+          <Property Name="Дата_и_время_заказа_на_ВыпПрод" Type="datetime" />
+          <Property Name="Наименование_выпускаемой_продукции" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Строка_заявки_на_поставку_сырья">
+          <Key>
+            <PropertyRef Name="Номер_строки_заявки" />
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Номер_строки_заявки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Количество_поставляемого_сырья" Type="int" />
+          <Property Name="Дата_и_время_поставки_сырья" Type="datetime" />
+          <Property Name="Код_заявки" Type="int" Nullable="false" />
+          <Property Name="Код_сырья" Type="int" />
+        </EntityType>
+        <EntityType Name="Строка_плана_перевозок">
+          <Key>
+            <PropertyRef Name="Код_строки_плана_перевозок" />
+            <PropertyRef Name="Номер_строки_ТОРГ_8" />
+          </Key>
+          <Property Name="Код_строки_плана_перевозок" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Адрес_назначения" Type="varchar(max)" />
+          <Property Name="Время_отъезда" Type="datetime" />
+          <Property Name="Время_в_пути" Type="datetime" />
+          <Property Name="Время_прибытия" Type="datetime" />
+          <Property Name="Номер_строки_ТОРГ_8" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Строка_учета_отпуска_сырья_в_производство">
+          <Key>
+            <PropertyRef Name="Код_учета" />
+            <PropertyRef Name="Номер_строки_учета_отпуска" />
+            <PropertyRef Name="Код_сырья" />
+            <PropertyRef Name="Код_заказа" />
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+          </Key>
+          <Property Name="Код_учета" Type="int" Nullable="false" />
+          <Property Name="Номер_строки_учета_отпуска" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_сырья" Type="int" Nullable="false" />
+          <Property Name="Количество_отпускаемого_сырья" Type="int" />
+          <Property Name="Код_заказа" Type="int" Nullable="false" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="int" Nullable="false" />
+          <Property Name="Дата_и_время_отпуска_со_склада" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Сырье">
+          <Key>
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_сырья" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_сырья" Type="varchar(max)" />
+          <Property Name="Ед_измерения" Type="varchar(max)" />
+          <Property Name="Код_поставщика" Type="int" Nullable="false" />
+          <Property Name="Масса" Type="int" />
+          <Property Name="Количество" Type="int" />
+        </EntityType>
+        <EntityType Name="Технология_производства">
+          <Key>
+            <PropertyRef Name="Код_производственного_процесса" />
+          </Key>
+          <Property Name="Код_ГОСТа" Type="int" Nullable="false" />
+          <Property Name="Код_сырья" Type="int" Nullable="false" />
+          <Property Name="Код_подготовленного_сырья" Type="int" />
+          <Property Name="Код_оборудования" Type="int" />
+          <Property Name="Код_работника" Type="int" Nullable="false" />
+          <Property Name="Код_брака" Type="int" />
+          <Property Name="Время_начала_производственного_процесса" Type="time" Precision="7" />
+          <Property Name="Время_окончания_производственного_процесса" Type="time" Precision="7" />
+          <Property Name="Наименование_производственного_процесса" Type="varchar(max)" />
+          <Property Name="Код_производственного_процесса" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_продукции" Type="int" />
+        </EntityType>
+        <EntityType Name="ТОРГ_1_Акт_о_приемке_товаров">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_1" />
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_работника" Type="int" />
+          <Property Name="Номер_строки_ТОРГ_1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_сырья" Type="int" Nullable="false" />
+          <Property Name="Дата_и_время_ТОРГ_1" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ТОРГ_8_Заказ_отборочный_лист">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_8" />
+          </Key>
+          <Property Name="Номер_строки_ТОРГ_8" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_продукции" Type="int" />
+          <Property Name="Код_разрешения_на_отправку" Type="int" />
+          <Property Name="Код_работника" Type="int" />
+          <Property Name="Номер_строки_ТОРГ_9" Type="int" />
+          <Property Name="Дата_и_время_ТОРГ_8" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ТОРГ_9_Упаковочный_ярлык">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_9" />
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Номер_строки_ТОРГ_9" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_продукции" Type="int" Nullable="false" />
+          <Property Name="Дата_и_время_ТОРГ_9" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Учет_отпуска_сырья_в_производство">
+          <Key>
+            <PropertyRef Name="Код_учета" />
+          </Key>
+          <Property Name="Код_учета" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_учета" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="Анализируется">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Бракуется">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="Брак" Type="Self.Брак" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Брак">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Вносится">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="ТОРГ_9_Упаковочный_ярлык" Type="Self.ТОРГ_9_Упаковочный_ярлык" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="ТОРГ_9_Упаковочный_ярлык">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Вносится_в">
+          <End Role="Подготовленное_сырье" Type="Self.Подготовленное_сырье" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Подготовленное_сырье">
+              <PropertyRef Name="Код_подготовленного_сырья" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_подготовленного_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заключает">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Закреплен_за">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Оборудование">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заносится">
+          <End Role="ТОРГ_9_Упаковочный_ярлык" Type="Self.ТОРГ_9_Упаковочный_ярлык" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТОРГ_9_Упаковочный_ярлык">
+              <PropertyRef Name="Номер_строки_ТОРГ_9" />
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Номер_строки_ТОРГ_9" />
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заносится_в">
+          <End Role="Разрешение_на_отправку" Type="Self.Разрешение_на_отправку" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Разрешение_на_отправку">
+              <PropertyRef Name="Код_разрешения_на_отправку" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Код_разрешения_на_отправку" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается">
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="0..1" />
+          <End Role="Подготовленное_сырье" Type="Self.Подготовленное_сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Номер_строки_учета_отпуска" />
+              <PropertyRef Name="Код_учета" />
+              <PropertyRef Name="Код_заказа" />
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Подготовленное_сырье">
+              <PropertyRef Name="Номер_строки_учета_отпуска" />
+              <PropertyRef Name="Код_учета" />
+              <PropertyRef Name="Код_заказа" />
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается_в">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается_Описывает">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="ТОРГ_1_Акт_о_приемке_товаров" Type="Self.ТОРГ_1_Акт_о_приемке_товаров" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="ТОРГ_1_Акт_о_приемке_товаров">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Имеет_Имеется_у">
+          <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="1" />
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщик">
+              <PropertyRef Name="Код_поставщика" />
+            </Principal>
+            <Dependent Role="Сырье">
+              <PropertyRef Name="Код_поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Имеет_принадлежит">
+          <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+          <End Role="Работник" Type="Self.Работник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Работник">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Используется">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Оперируется">
+          <End Role="Брак" Type="Self.Брак" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Брак">
+              <PropertyRef Name="Код_брака" />
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_брака" />
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Описывает">
+          <End Role="Документ_Передача_брака_в_переработку" Type="Self.Документ_Передача_брака_в_переработку" Multiplicity="0..1" />
+          <End Role="Брак" Type="Self.Брак" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Документ_Передача_брака_в_переработку">
+              <PropertyRef Name="Номер_документа_о_браке" />
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Брак">
+              <PropertyRef Name="Номер_документа_о_браке" />
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет">
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="1" />
+          <End Role="Строка_плана_перевозок" Type="Self.Строка_плана_перевозок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Номер_строки_ТОРГ_8" />
+            </Principal>
+            <Dependent Role="Строка_плана_перевозок">
+              <PropertyRef Name="Номер_строки_ТОРГ_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет_да">
+          <End Role="Образец" Type="Self.Образец" Multiplicity="0..1" />
+          <End Role="Разрешение_на_отправку" Type="Self.Разрешение_на_отправку" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образец">
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Разрешение_на_отправку">
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет_нет">
+          <End Role="Образец" Type="Self.Образец" Multiplicity="1" />
+          <End Role="Документ_Передача_брака_в_переработку" Type="Self.Документ_Передача_брака_в_переработку" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образец">
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Документ_Передача_брака_в_переработку">
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Предоставляет">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
+          <End Role="Образец" Type="Self.Образец" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Образец">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Придерживается">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Принимается">
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <End Role="Строка_заявки_на_поставку_сырья" Type="Self.Строка_заявки_на_поставку_сырья" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_заявки_на_поставку_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Производит">
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="1" />
+          <End Role="Готовая_партия" Type="Self.Готовая_партия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Технология_производства">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Principal>
+            <Dependent Role="Готовая_партия">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Регламентирует">
+          <End Role="ГОСТ" Type="Self.ГОСТ" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ГОСТ">
+              <PropertyRef Name="Код_ГОСТа" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_ГОСТа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Следует">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Согласовывается">
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит">
+          <End Role="Заявка_на_поставку_сырья" Type="Self.Заявка_на_поставку_сырья" Multiplicity="1" />
+          <End Role="Строка_заявки_на_поставку_сырья" Type="Self.Строка_заявки_на_поставку_сырья" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заявка_на_поставку_сырья">
+              <PropertyRef Name="Код_заявки" />
+            </Principal>
+            <Dependent Role="Строка_заявки_на_поставку_сырья">
+              <PropertyRef Name="Код_заявки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит_входит">
+          <End Role="Заказ_на_выпускаемую_продукцию" Type="Self.Заказ_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказ_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит_индексируется">
+          <End Role="Учет_отпуска_сырья_в_производство" Type="Self.Учет_отпуска_сырья_в_производство" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учет_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_учета" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_учета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Составляет">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="ТОРГ_1_Акт_о_приемке_товаров" Type="Self.ТОРГ_1_Акт_о_приемке_товаров" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="ТОРГ_1_Акт_о_приемке_товаров">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Состоит_из">
+          <End Role="Готовая_партия" Type="Self.Готовая_партия" Multiplicity="0..1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Готовая_партия">
+              <PropertyRef Name="Код_готовой_партии" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Код_готовой_партии" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Строит">
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитывается">
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="0..1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Технология_производства">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитывается_Учитывает">
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Эксплуатируется">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="Код_оборудования" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_оборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Diploma_DB_of_VladkhlebModelContainer">
+          <EntitySet Name="Брак" EntityType="Self.Брак" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ГОСТ" EntityType="Self.ГОСТ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Готовая_партия" EntityType="Self.Готовая_партия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Документ_Передача_брака_в_переработку" EntityType="Self.Документ_Передача_брака_в_переработку" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должность" EntityType="Self.Должность" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заказ_на_выпускаемую_продукцию" EntityType="Self.Заказ_на_выпускаемую_продукцию" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заявка_на_поставку_сырья" EntityType="Self.Заявка_на_поставку_сырья" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Образец" EntityType="Self.Образец" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Подготовленное_сырье" EntityType="Self.Подготовленное_сырье" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поставщик" EntityType="Self.Поставщик" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Прогноз_для_нового_сырья" EntityType="Self.Прогноз_для_нового_сырья" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Работник" EntityType="Self.Работник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Разрешение_на_отправку" EntityType="Self.Разрешение_на_отправку" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Строка_графика_работ" EntityType="Self.Строка_графика_работ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Строка_заказа_на_выпускаемую_продукцию" EntityType="Self.Строка_заказа_на_выпускаемую_продукцию" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Строка_заявки_на_поставку_сырья" EntityType="Self.Строка_заявки_на_поставку_сырья" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Строка_плана_перевозок" EntityType="Self.Строка_плана_перевозок" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Строка_учета_отпуска_сырья_в_производство" EntityType="Self.Строка_учета_отпуска_сырья_в_производство" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сырье" EntityType="Self.Сырье" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Технология_производства" EntityType="Self.Технология_производства" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТОРГ_1_Акт_о_приемке_товаров" EntityType="Self.ТОРГ_1_Акт_о_приемке_товаров" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТОРГ_8_Заказ_отборочный_лист" EntityType="Self.ТОРГ_8_Заказ_отборочный_лист" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТОРГ_9_Упаковочный_ярлык" EntityType="Self.ТОРГ_9_Упаковочный_ярлык" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учет_отпуска_сырья_в_производство" EntityType="Self.Учет_отпуска_сырья_в_производство" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Анализируется" Association="Self.Анализируется">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Бракуется" Association="Self.Бракуется">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Брак" EntitySet="Брак" />
+          </AssociationSet>
+          <AssociationSet Name="Вносится" Association="Self.Вносится">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="ТОРГ_9_Упаковочный_ярлык" EntitySet="ТОРГ_9_Упаковочный_ярлык" />
+          </AssociationSet>
+          <AssociationSet Name="Вносится_в" Association="Self.Вносится_в">
+            <End Role="Подготовленное_сырье" EntitySet="Подготовленное_сырье" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Заключает" Association="Self.Заключает">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+          <AssociationSet Name="Закреплен_за" Association="Self.Закреплен_за">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Оборудование" EntitySet="Оборудование" />
+          </AssociationSet>
+          <AssociationSet Name="Заносится" Association="Self.Заносится">
+            <End Role="ТОРГ_9_Упаковочный_ярлык" EntitySet="ТОРГ_9_Упаковочный_ярлык" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+          <AssociationSet Name="Заносится_в" Association="Self.Заносится_в">
+            <End Role="Разрешение_на_отправку" EntitySet="Разрешение_на_отправку" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается" Association="Self.Записывается">
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+            <End Role="Подготовленное_сырье" EntitySet="Подготовленное_сырье" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается_в" Association="Self.Записывается_в">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается_Описывает" Association="Self.Записывается_Описывает">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="ТОРГ_1_Акт_о_приемке_товаров" EntitySet="ТОРГ_1_Акт_о_приемке_товаров" />
+          </AssociationSet>
+          <AssociationSet Name="Имеет_Имеется_у" Association="Self.Имеет_Имеется_у">
+            <End Role="Поставщик" EntitySet="Поставщик" />
+            <End Role="Сырье" EntitySet="Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="Имеет_принадлежит" Association="Self.Имеет_принадлежит">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Работник" EntitySet="Работник" />
+          </AssociationSet>
+          <AssociationSet Name="Используется" Association="Self.Используется">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Оперируется" Association="Self.Оперируется">
+            <End Role="Брак" EntitySet="Брак" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Описывает" Association="Self.Описывает">
+            <End Role="Документ_Передача_брака_в_переработку" EntitySet="Документ_Передача_брака_в_переработку" />
+            <End Role="Брак" EntitySet="Брак" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет" Association="Self.Определяет">
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+            <End Role="Строка_плана_перевозок" EntitySet="Строка_плана_перевозок" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет_да" Association="Self.Определяет_да">
+            <End Role="Образец" EntitySet="Образец" />
+            <End Role="Разрешение_на_отправку" EntitySet="Разрешение_на_отправку" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет_нет" Association="Self.Определяет_нет">
+            <End Role="Образец" EntitySet="Образец" />
+            <End Role="Документ_Передача_брака_в_переработку" EntitySet="Документ_Передача_брака_в_переработку" />
+          </AssociationSet>
+          <AssociationSet Name="Предоставляет" Association="Self.Предоставляет">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Образец" EntitySet="Образец" />
+          </AssociationSet>
+          <AssociationSet Name="Придерживается" Association="Self.Придерживается">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Принимается" Association="Self.Принимается">
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+            <End Role="Строка_заявки_на_поставку_сырья" EntitySet="Строка_заявки_на_поставку_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Производит" Association="Self.Производит">
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+            <End Role="Готовая_партия" EntitySet="Готовая_партия" />
+          </AssociationSet>
+          <AssociationSet Name="Регламентирует" Association="Self.Регламентирует">
+            <End Role="ГОСТ" EntitySet="ГОСТ" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Следует" Association="Self.Следует">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Согласовывается" Association="Self.Согласовывается">
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит" Association="Self.Содержит">
+            <End Role="Заявка_на_поставку_сырья" EntitySet="Заявка_на_поставку_сырья" />
+            <End Role="Строка_заявки_на_поставку_сырья" EntitySet="Строка_заявки_на_поставку_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит_входит" Association="Self.Содержит_входит">
+            <End Role="Заказ_на_выпускаемую_продукцию" EntitySet="Заказ_на_выпускаемую_продукцию" />
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит_индексируется" Association="Self.Содержит_индексируется">
+            <End Role="Учет_отпуска_сырья_в_производство" EntitySet="Учет_отпуска_сырья_в_производство" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Составляет" Association="Self.Составляет">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="ТОРГ_1_Акт_о_приемке_товаров" EntitySet="ТОРГ_1_Акт_о_приемке_товаров" />
+          </AssociationSet>
+          <AssociationSet Name="Состоит_из" Association="Self.Состоит_из">
+            <End Role="Готовая_партия" EntitySet="Готовая_партия" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="Строит" Association="Self.Строит">
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Учитывается" Association="Self.Учитывается">
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Учитывается_Учитывает" Association="Self.Учитывается_Учитывает">
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+          </AssociationSet>
+          <AssociationSet Name="Эксплуатируется" Association="Self.Эксплуатируется">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Diploma_DB_of_VladkhlebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Брак">
+          <Key>
+            <PropertyRef Name="Код_брака" />
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Код_брака" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_документа_о_браке" Type="Int32" />
+          <Property Name="Код_образца" Type="Int32" />
+          <Property Name="Код_продукции" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Бракуется" FromRole="Брак" ToRole="Продукция" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Оперируется" FromRole="Брак" ToRole="Технология_производства" />
+          <NavigationProperty Name="Документ_Передача_брака_в_переработку" Relationship="Self.Описывает" FromRole="Брак" ToRole="Документ_Передача_брака_в_переработку" />
+        </EntityType>
+        <EntityType Name="ГОСТ">
+          <Key>
+            <PropertyRef Name="Код_ГОСТа" />
+          </Key>
+          <Property Name="Код_ГОСТа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_ГОСТа" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Количество_жиров" Type="Int32" />
+          <Property Name="Количество_углеводов" Type="Int32" />
+          <Property Name="Количество_белков" Type="Int32" />
+          <Property Name="Наименование_пищевых_добавок" Type="Int32" />
+          <Property Name="Количество_каллорий" Type="Int32" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Регламентирует" FromRole="ГОСТ" ToRole="Технология_производства" />
+        </EntityType>
+        <EntityType Name="Готовая_партия">
+          <Key>
+            <PropertyRef Name="Код_готовой_партии" />
+          </Key>
+          <Property Name="Код_готовой_партии" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_производственного_процесса" Type="Int32" Nullable="false" />
+          <Property Name="Дата_и_время_изготовления_гп" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Производит" FromRole="Готовая_партия" ToRole="Технология_производства" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Состоит_из" FromRole="Готовая_партия" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Документ_Передача_брака_в_переработку">
+          <Key>
+            <PropertyRef Name="Номер_документа_о_браке" />
+            <PropertyRef Name="Код_образца" />
+          </Key>
+          <Property Name="Номер_документа_о_браке" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_образца" Type="Int32" Nullable="false" />
+          <Property Name="Дата_и_время_док_брак" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Брак" Relationship="Self.Описывает" FromRole="Документ_Передача_брака_в_переработку" ToRole="Брак" />
+          <NavigationProperty Name="Образец" Relationship="Self.Определяет_нет" FromRole="Документ_Передача_брака_в_переработку" ToRole="Образец" />
+        </EntityType>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="Int32" Nullable="false" />
+          <Property Name="Наименование_должности" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Работник" Relationship="Self.Имеет_принадлежит" FromRole="Должность" ToRole="Работник" />
+        </EntityType>
+        <EntityType Name="Заказ_на_выпускаемую_продукцию">
+          <Key>
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Код_заказа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_заказа" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Строка_заказа_на_выпускаемую_продукцию" Relationship="Self.Содержит_входит" FromRole="Заказ_на_выпускаемую_продукцию" ToRole="Строка_заказа_на_выпускаемую_продукцию" />
+        </EntityType>
+        <EntityType Name="Заявка_на_поставку_сырья">
+          <Key>
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Код_заявки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_заявки" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Строка_заявки_на_поставку_сырья" Relationship="Self.Содержит" FromRole="Заявка_на_поставку_сырья" ToRole="Строка_заявки_на_поставку_сырья" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="Код_оборудования" />
+          </Key>
+          <Property Name="Код_работника" Type="Int32" />
+          <Property Name="Код_оборудования" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_оборудования" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Работник" Relationship="Self.Закреплен_за" FromRole="Оборудование" ToRole="Работник" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Эксплуатируется" FromRole="Оборудование" ToRole="Технология_производства" />
+        </EntityType>
+        <EntityType Name="Образец">
+          <Key>
+            <PropertyRef Name="Код_образца" />
+          </Key>
+          <Property Name="Код_образца" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_продукции" Type="Int32" />
+          <NavigationProperty Name="Документ_Передача_брака_в_переработку" Relationship="Self.Определяет_нет" FromRole="Образец" ToRole="Документ_Передача_брака_в_переработку" />
+          <NavigationProperty Name="Разрешение_на_отправку" Relationship="Self.Определяет_да" FromRole="Образец" ToRole="Разрешение_на_отправку" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Предоставляет" FromRole="Образец" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Подготовленное_сырье">
+          <Key>
+            <PropertyRef Name="Код_подготовленного_сырья" />
+          </Key>
+          <Property Name="Код_подготовленного_сырья" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_учета" Type="Int32" />
+          <Property Name="Номер_строки_учета_отпуска" Type="Int32" />
+          <Property Name="Код_заказа" Type="Int32" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="Int32" />
+          <Property Name="Наименование_подготовленного_сырья" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Код_сырья" Type="Int32" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Вносится_в" FromRole="Подготовленное_сырье" ToRole="Технология_производства" />
+          <NavigationProperty Name="Строка_учета_отпуска_сырья_в_производство" Relationship="Self.Записывается" FromRole="Подготовленное_сырье" ToRole="Строка_учета_отпуска_сырья_в_производство" />
+        </EntityType>
+        <EntityType Name="Поставщик">
+          <Key>
+            <PropertyRef Name="Код_поставщика" />
+          </Key>
+          <Property Name="Код_поставщика" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_поставщика" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ИНН" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Сырье" Relationship="Self.Имеет_Имеется_у" FromRole="Поставщик" ToRole="Сырье" />
+        </EntityType>
+        <EntityType Name="Прогноз_для_нового_сырья">
+          <Key>
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_сырья" Type="Int32" Nullable="false" />
+          <Property Name="Количество_прогнозируемого_сырья" Type="Int32" />
+          <NavigationProperty Name="Сырье" Relationship="Self.Анализируется" FromRole="Прогноз_для_нового_сырья" ToRole="Сырье" />
+          <NavigationProperty Name="Строка_заявки_на_поставку_сырья" Relationship="Self.Принимается" FromRole="Прогноз_для_нового_сырья" ToRole="Строка_заявки_на_поставку_сырья" />
+          <NavigationProperty Name="Строка_заказа_на_выпускаемую_продукцию" Relationship="Self.Учитывается_Учитывает" FromRole="Прогноз_для_нового_сырья" ToRole="Строка_заказа_на_выпускаемую_продукцию" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Код_продукции" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_готовой_партии" Type="Int32" />
+          <Property Name="Количество" Type="Int32" />
+          <Property Name="Цена" Type="Int32" />
+          <Property Name="Ед_измерения" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="НДС" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Масса" Type="Int32" />
+          <Property Name="Дата_и_время_изготовления_пр" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Брак" Relationship="Self.Бракуется" FromRole="Продукция" ToRole="Брак" />
+          <NavigationProperty Name="Готовая_партия" Relationship="Self.Состоит_из" FromRole="Продукция" ToRole="Готовая_партия" />
+          <NavigationProperty Name="Образец" Relationship="Self.Предоставляет" FromRole="Продукция" ToRole="Образец" />
+          <NavigationProperty Name="ТОРГ_9_Упаковочный_ярлык" Relationship="Self.Вносится" FromRole="Продукция" ToRole="ТОРГ_9_Упаковочный_ярлык" />
+        </EntityType>
+        <EntityType Name="Работник">
+          <Key>
+            <PropertyRef Name="Код_работника" />
+          </Key>
+          <Property Name="Код_работника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО_работника" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Код_должности" Type="Int32" />
+          <Property Name="Номер_бригады" Type="Int32" />
+          <Property Name="Имя_пользователя" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Пароль" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Должность" Relationship="Self.Имеет_принадлежит" FromRole="Работник" ToRole="Должность" />
+          <NavigationProperty Name="Оборудование" Relationship="Self.Закреплен_за" FromRole="Работник" ToRole="Оборудование" />
+          <NavigationProperty Name="ТОРГ_8_Заказ_отборочный_лист" Relationship="Self.Заключает" FromRole="Работник" ToRole="ТОРГ_8_Заказ_отборочный_лист" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Придерживается" FromRole="Работник" ToRole="Технология_производства" />
+          <NavigationProperty Name="Строка_графика_работ" Relationship="Self.Следует" FromRole="Работник" ToRole="Строка_графика_работ" />
+          <NavigationProperty Name="ТОРГ_1_Акт_о_приемке_товаров" Relationship="Self.Составляет" FromRole="Работник" ToRole="ТОРГ_1_Акт_о_приемке_товаров" />
+        </EntityType>
+        <EntityType Name="Разрешение_на_отправку">
+          <Key>
+            <PropertyRef Name="Код_разрешения_на_отправку" />
+          </Key>
+          <Property Name="Код_разрешения_на_отправку" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_образца" Type="Int32" />
+          <Property Name="Дата_и_время_РазрОтпр" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Образец" Relationship="Self.Определяет_да" FromRole="Разрешение_на_отправку" ToRole="Образец" />
+          <NavigationProperty Name="ТОРГ_8_Заказ_отборочный_лист" Relationship="Self.Заносится_в" FromRole="Разрешение_на_отправку" ToRole="ТОРГ_8_Заказ_отборочный_лист" />
+        </EntityType>
+        <EntityType Name="Строка_графика_работ">
+          <Key>
+            <PropertyRef Name="Номер_строки_графика_работ" />
+            <PropertyRef Name="Код_заказа" />
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+            <PropertyRef Name="Код_работника" />
+          </Key>
+          <Property Name="Номер_строки_графика_работ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Время_начала_смены" Type="Time" Precision="7" />
+          <Property Name="Время_окончания_смены" Type="Time" Precision="7" />
+          <Property Name="Код_заказа" Type="Int32" Nullable="false" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="Int32" Nullable="false" />
+          <Property Name="Код_производственного_процесса" Type="Int32" />
+          <Property Name="Код_работника" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Работник" Relationship="Self.Следует" FromRole="Строка_графика_работ" ToRole="Работник" />
+          <NavigationProperty Name="Строка_заказа_на_выпускаемую_продукцию" Relationship="Self.Строит" FromRole="Строка_графика_работ" ToRole="Строка_заказа_на_выпускаемую_продукцию" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Учитывается" FromRole="Строка_графика_работ" ToRole="Технология_производства" />
+        </EntityType>
+        <EntityType Name="Строка_заказа_на_выпускаемую_продукцию">
+          <Key>
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_заказа" Type="Int32" Nullable="false" />
+          <Property Name="Код_сырья" Type="Int32" />
+          <Property Name="Количество_выпускаемой_продукции" Type="Int32" />
+          <Property Name="Дата_и_время_заказа_на_ВыпПрод" Type="DateTime" Precision="3" />
+          <Property Name="Наименование_выпускаемой_продукции" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Заказ_на_выпускаемую_продукцию" Relationship="Self.Содержит_входит" FromRole="Строка_заказа_на_выпускаемую_продукцию" ToRole="Заказ_на_выпускаемую_продукцию" />
+          <NavigationProperty Name="Прогноз_для_нового_сырья" Relationship="Self.Учитывается_Учитывает" FromRole="Строка_заказа_на_выпускаемую_продукцию" ToRole="Прогноз_для_нового_сырья" />
+          <NavigationProperty Name="Строка_графика_работ" Relationship="Self.Строит" FromRole="Строка_заказа_на_выпускаемую_продукцию" ToRole="Строка_графика_работ" />
+          <NavigationProperty Name="Строка_учета_отпуска_сырья_в_производство" Relationship="Self.Согласовывается" FromRole="Строка_заказа_на_выпускаемую_продукцию" ToRole="Строка_учета_отпуска_сырья_в_производство" />
+        </EntityType>
+        <EntityType Name="Строка_заявки_на_поставку_сырья">
+          <Key>
+            <PropertyRef Name="Номер_строки_заявки" />
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Номер_строки_заявки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Количество_поставляемого_сырья" Type="Int32" />
+          <Property Name="Дата_и_время_поставки_сырья" Type="DateTime" Precision="3" />
+          <Property Name="Код_заявки" Type="Int32" Nullable="false" />
+          <Property Name="Код_сырья" Type="Int32" />
+          <NavigationProperty Name="Заявка_на_поставку_сырья" Relationship="Self.Содержит" FromRole="Строка_заявки_на_поставку_сырья" ToRole="Заявка_на_поставку_сырья" />
+          <NavigationProperty Name="Прогноз_для_нового_сырья" Relationship="Self.Принимается" FromRole="Строка_заявки_на_поставку_сырья" ToRole="Прогноз_для_нового_сырья" />
+        </EntityType>
+        <EntityType Name="Строка_плана_перевозок">
+          <Key>
+            <PropertyRef Name="Код_строки_плана_перевозок" />
+            <PropertyRef Name="Номер_строки_ТОРГ_8" />
+          </Key>
+          <Property Name="Код_строки_плана_перевозок" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Адрес_назначения" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Время_отъезда" Type="DateTime" Precision="3" />
+          <Property Name="Время_в_пути" Type="DateTime" Precision="3" />
+          <Property Name="Время_прибытия" Type="DateTime" Precision="3" />
+          <Property Name="Номер_строки_ТОРГ_8" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ТОРГ_8_Заказ_отборочный_лист" Relationship="Self.Определяет" FromRole="Строка_плана_перевозок" ToRole="ТОРГ_8_Заказ_отборочный_лист" />
+        </EntityType>
+        <EntityType Name="Строка_учета_отпуска_сырья_в_производство">
+          <Key>
+            <PropertyRef Name="Код_учета" />
+            <PropertyRef Name="Номер_строки_учета_отпуска" />
+            <PropertyRef Name="Код_сырья" />
+            <PropertyRef Name="Код_заказа" />
+            <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+          </Key>
+          <Property Name="Код_учета" Type="Int32" Nullable="false" />
+          <Property Name="Номер_строки_учета_отпуска" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_сырья" Type="Int32" Nullable="false" />
+          <Property Name="Количество_отпускаемого_сырья" Type="Int32" />
+          <Property Name="Код_заказа" Type="Int32" Nullable="false" />
+          <Property Name="Номер_строки_заказа_на_выпускаемую_продукцию" Type="Int32" Nullable="false" />
+          <Property Name="Дата_и_время_отпуска_со_склада" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Подготовленное_сырье" Relationship="Self.Записывается" FromRole="Строка_учета_отпуска_сырья_в_производство" ToRole="Подготовленное_сырье" />
+          <NavigationProperty Name="Строка_заказа_на_выпускаемую_продукцию" Relationship="Self.Согласовывается" FromRole="Строка_учета_отпуска_сырья_в_производство" ToRole="Строка_заказа_на_выпускаемую_продукцию" />
+          <NavigationProperty Name="Сырье" Relationship="Self.Записывается_в" FromRole="Строка_учета_отпуска_сырья_в_производство" ToRole="Сырье" />
+          <NavigationProperty Name="Учет_отпуска_сырья_в_производство" Relationship="Self.Содержит_индексируется" FromRole="Строка_учета_отпуска_сырья_в_производство" ToRole="Учет_отпуска_сырья_в_производство" />
+        </EntityType>
+        <EntityType Name="Сырье">
+          <Key>
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_сырья" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_сырья" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ед_измерения" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Код_поставщика" Type="Int32" Nullable="false" />
+          <Property Name="Масса" Type="Int32" />
+          <Property Name="Количество" Type="Int32" />
+          <NavigationProperty Name="Поставщик" Relationship="Self.Имеет_Имеется_у" FromRole="Сырье" ToRole="Поставщик" />
+          <NavigationProperty Name="Прогноз_для_нового_сырья" Relationship="Self.Анализируется" FromRole="Сырье" ToRole="Прогноз_для_нового_сырья" />
+          <NavigationProperty Name="Строка_учета_отпуска_сырья_в_производство" Relationship="Self.Записывается_в" FromRole="Сырье" ToRole="Строка_учета_отпуска_сырья_в_производство" />
+          <NavigationProperty Name="ТОРГ_1_Акт_о_приемке_товаров" Relationship="Self.Записывается_Описывает" FromRole="Сырье" ToRole="ТОРГ_1_Акт_о_приемке_товаров" />
+          <NavigationProperty Name="Технология_производства" Relationship="Self.Используется" FromRole="Сырье" ToRole="Технология_производства" />
+        </EntityType>
+        <EntityType Name="Технология_производства">
+          <Key>
+            <PropertyRef Name="Код_производственного_процесса" />
+          </Key>
+          <Property Name="Код_ГОСТа" Type="Int32" Nullable="false" />
+          <Property Name="Код_сырья" Type="Int32" Nullable="false" />
+          <Property Name="Код_подготовленного_сырья" Type="Int32" />
+          <Property Name="Код_оборудования" Type="Int32" />
+          <Property Name="Код_работника" Type="Int32" Nullable="false" />
+          <Property Name="Код_брака" Type="Int32" />
+          <Property Name="Время_начала_производственного_процесса" Type="Time" Precision="7" />
+          <Property Name="Время_окончания_производственного_процесса" Type="Time" Precision="7" />
+          <Property Name="Наименование_производственного_процесса" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Код_производственного_процесса" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_продукции" Type="Int32" />
+          <NavigationProperty Name="Брак" Relationship="Self.Оперируется" FromRole="Технология_производства" ToRole="Брак" />
+          <NavigationProperty Name="ГОСТ" Relationship="Self.Регламентирует" FromRole="Технология_производства" ToRole="ГОСТ" />
+          <NavigationProperty Name="Готовая_партия" Relationship="Self.Производит" FromRole="Технология_производства" ToRole="Готовая_партия" />
+          <NavigationProperty Name="Оборудование" Relationship="Self.Эксплуатируется" FromRole="Технология_производства" ToRole="Оборудование" />
+          <NavigationProperty Name="Подготовленное_сырье" Relationship="Self.Вносится_в" FromRole="Технология_производства" ToRole="Подготовленное_сырье" />
+          <NavigationProperty Name="Работник" Relationship="Self.Придерживается" FromRole="Технология_производства" ToRole="Работник" />
+          <NavigationProperty Name="Строка_графика_работ" Relationship="Self.Учитывается" FromRole="Технология_производства" ToRole="Строка_графика_работ" />
+          <NavigationProperty Name="Сырье" Relationship="Self.Используется" FromRole="Технология_производства" ToRole="Сырье" />
+        </EntityType>
+        <EntityType Name="ТОРГ_1_Акт_о_приемке_товаров">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_1" />
+            <PropertyRef Name="Код_сырья" />
+          </Key>
+          <Property Name="Код_работника" Type="Int32" />
+          <Property Name="Номер_строки_ТОРГ_1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_сырья" Type="Int32" Nullable="false" />
+          <Property Name="Дата_и_время_ТОРГ_1" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Работник" Relationship="Self.Составляет" FromRole="ТОРГ_1_Акт_о_приемке_товаров" ToRole="Работник" />
+          <NavigationProperty Name="Сырье" Relationship="Self.Записывается_Описывает" FromRole="ТОРГ_1_Акт_о_приемке_товаров" ToRole="Сырье" />
+        </EntityType>
+        <EntityType Name="ТОРГ_8_Заказ_отборочный_лист">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_8" />
+          </Key>
+          <Property Name="Номер_строки_ТОРГ_8" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_продукции" Type="Int32" />
+          <Property Name="Код_разрешения_на_отправку" Type="Int32" />
+          <Property Name="Код_работника" Type="Int32" />
+          <Property Name="Номер_строки_ТОРГ_9" Type="Int32" />
+          <Property Name="Дата_и_время_ТОРГ_8" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Работник" Relationship="Self.Заключает" FromRole="ТОРГ_8_Заказ_отборочный_лист" ToRole="Работник" />
+          <NavigationProperty Name="Разрешение_на_отправку" Relationship="Self.Заносится_в" FromRole="ТОРГ_8_Заказ_отборочный_лист" ToRole="Разрешение_на_отправку" />
+          <NavigationProperty Name="Строка_плана_перевозок" Relationship="Self.Определяет" FromRole="ТОРГ_8_Заказ_отборочный_лист" ToRole="Строка_плана_перевозок" />
+          <NavigationProperty Name="ТОРГ_9_Упаковочный_ярлык" Relationship="Self.Заносится" FromRole="ТОРГ_8_Заказ_отборочный_лист" ToRole="ТОРГ_9_Упаковочный_ярлык" />
+        </EntityType>
+        <EntityType Name="ТОРГ_9_Упаковочный_ярлык">
+          <Key>
+            <PropertyRef Name="Номер_строки_ТОРГ_9" />
+            <PropertyRef Name="Код_продукции" />
+          </Key>
+          <Property Name="Номер_строки_ТОРГ_9" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_продукции" Type="Int32" Nullable="false" />
+          <Property Name="Дата_и_время_ТОРГ_9" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Вносится" FromRole="ТОРГ_9_Упаковочный_ярлык" ToRole="Продукция" />
+          <NavigationProperty Name="ТОРГ_8_Заказ_отборочный_лист" Relationship="Self.Заносится" FromRole="ТОРГ_9_Упаковочный_ярлык" ToRole="ТОРГ_8_Заказ_отборочный_лист" />
+        </EntityType>
+        <EntityType Name="Учет_отпуска_сырья_в_производство">
+          <Key>
+            <PropertyRef Name="Код_учета" />
+          </Key>
+          <Property Name="Код_учета" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_учета" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Строка_учета_отпуска_сырья_в_производство" Relationship="Self.Содержит_индексируется" FromRole="Учет_отпуска_сырья_в_производство" ToRole="Строка_учета_отпуска_сырья_в_производство" />
+        </EntityType>
+        <Association Name="Бракуется">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="Брак" Type="Self.Брак" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Брак">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Оперируется">
+          <End Role="Брак" Type="Self.Брак" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Брак">
+              <PropertyRef Name="Код_брака" />
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_брака" />
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Описывает">
+          <End Role="Документ_Передача_брака_в_переработку" Type="Self.Документ_Передача_брака_в_переработку" Multiplicity="0..1" />
+          <End Role="Брак" Type="Self.Брак" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Документ_Передача_брака_в_переработку">
+              <PropertyRef Name="Номер_документа_о_браке" />
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Брак">
+              <PropertyRef Name="Номер_документа_о_браке" />
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Регламентирует">
+          <End Role="ГОСТ" Type="Self.ГОСТ" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ГОСТ">
+              <PropertyRef Name="Код_ГОСТа" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_ГОСТа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Производит">
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="1" />
+          <End Role="Готовая_партия" Type="Self.Готовая_партия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Технология_производства">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Principal>
+            <Dependent Role="Готовая_партия">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Состоит_из">
+          <End Role="Готовая_партия" Type="Self.Готовая_партия" Multiplicity="0..1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Готовая_партия">
+              <PropertyRef Name="Код_готовой_партии" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Код_готовой_партии" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет_нет">
+          <End Role="Образец" Type="Self.Образец" Multiplicity="1" />
+          <End Role="Документ_Передача_брака_в_переработку" Type="Self.Документ_Передача_брака_в_переработку" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образец">
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Документ_Передача_брака_в_переработку">
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Имеет_принадлежит">
+          <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+          <End Role="Работник" Type="Self.Работник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Работник">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит_входит">
+          <End Role="Заказ_на_выпускаемую_продукцию" Type="Self.Заказ_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказ_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит">
+          <End Role="Заявка_на_поставку_сырья" Type="Self.Заявка_на_поставку_сырья" Multiplicity="1" />
+          <End Role="Строка_заявки_на_поставку_сырья" Type="Self.Строка_заявки_на_поставку_сырья" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заявка_на_поставку_сырья">
+              <PropertyRef Name="Код_заявки" />
+            </Principal>
+            <Dependent Role="Строка_заявки_на_поставку_сырья">
+              <PropertyRef Name="Код_заявки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Закреплен_за">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Оборудование">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Эксплуатируется">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="Код_оборудования" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_оборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет_да">
+          <End Role="Образец" Type="Self.Образец" Multiplicity="0..1" />
+          <End Role="Разрешение_на_отправку" Type="Self.Разрешение_на_отправку" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образец">
+              <PropertyRef Name="Код_образца" />
+            </Principal>
+            <Dependent Role="Разрешение_на_отправку">
+              <PropertyRef Name="Код_образца" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Предоставляет">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
+          <End Role="Образец" Type="Self.Образец" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="Образец">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Вносится_в">
+          <End Role="Подготовленное_сырье" Type="Self.Подготовленное_сырье" Multiplicity="0..1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Подготовленное_сырье">
+              <PropertyRef Name="Код_подготовленного_сырья" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_подготовленного_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается">
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="0..1" />
+          <End Role="Подготовленное_сырье" Type="Self.Подготовленное_сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Номер_строки_учета_отпуска" />
+              <PropertyRef Name="Код_учета" />
+              <PropertyRef Name="Код_заказа" />
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Подготовленное_сырье">
+              <PropertyRef Name="Номер_строки_учета_отпуска" />
+              <PropertyRef Name="Код_учета" />
+              <PropertyRef Name="Код_заказа" />
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Имеет_Имеется_у">
+          <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="1" />
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщик">
+              <PropertyRef Name="Код_поставщика" />
+            </Principal>
+            <Dependent Role="Сырье">
+              <PropertyRef Name="Код_поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Анализируется">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Принимается">
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <End Role="Строка_заявки_на_поставку_сырья" Type="Self.Строка_заявки_на_поставку_сырья" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_заявки_на_поставку_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитывается_Учитывает">
+          <End Role="Прогноз_для_нового_сырья" Type="Self.Прогноз_для_нового_сырья" Multiplicity="0..1" />
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Прогноз_для_нового_сырья">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Вносится">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="ТОРГ_9_Упаковочный_ярлык" Type="Self.ТОРГ_9_Упаковочный_ярлык" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="ТОРГ_9_Упаковочный_ярлык">
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заключает">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Придерживается">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Следует">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Составляет">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="0..1" />
+          <End Role="ТОРГ_1_Акт_о_приемке_товаров" Type="Self.ТОРГ_1_Акт_о_приемке_товаров" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="Код_работника" />
+            </Principal>
+            <Dependent Role="ТОРГ_1_Акт_о_приемке_товаров">
+              <PropertyRef Name="Код_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заносится_в">
+          <End Role="Разрешение_на_отправку" Type="Self.Разрешение_на_отправку" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Разрешение_на_отправку">
+              <PropertyRef Name="Код_разрешения_на_отправку" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Код_разрешения_на_отправку" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Строит">
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитывается">
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="0..1" />
+          <End Role="Строка_графика_работ" Type="Self.Строка_графика_работ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Технология_производства">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Principal>
+            <Dependent Role="Строка_графика_работ">
+              <PropertyRef Name="Код_производственного_процесса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Согласовывается">
+          <End Role="Строка_заказа_на_выпускаемую_продукцию" Type="Self.Строка_заказа_на_выпускаемую_продукцию" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Строка_заказа_на_выпускаемую_продукцию">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Номер_строки_заказа_на_выпускаемую_продукцию" />
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Определяет">
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="1" />
+          <End Role="Строка_плана_перевозок" Type="Self.Строка_плана_перевозок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Номер_строки_ТОРГ_8" />
+            </Principal>
+            <Dependent Role="Строка_плана_перевозок">
+              <PropertyRef Name="Номер_строки_ТОРГ_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается_в">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Содержит_индексируется">
+          <End Role="Учет_отпуска_сырья_в_производство" Type="Self.Учет_отпуска_сырья_в_производство" Multiplicity="1" />
+          <End Role="Строка_учета_отпуска_сырья_в_производство" Type="Self.Строка_учета_отпуска_сырья_в_производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учет_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_учета" />
+            </Principal>
+            <Dependent Role="Строка_учета_отпуска_сырья_в_производство">
+              <PropertyRef Name="Код_учета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Записывается_Описывает">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="ТОРГ_1_Акт_о_приемке_товаров" Type="Self.ТОРГ_1_Акт_о_приемке_товаров" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="ТОРГ_1_Акт_о_приемке_товаров">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Используется">
+          <End Role="Сырье" Type="Self.Сырье" Multiplicity="1" />
+          <End Role="Технология_производства" Type="Self.Технология_производства" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сырье">
+              <PropertyRef Name="Код_сырья" />
+            </Principal>
+            <Dependent Role="Технология_производства">
+              <PropertyRef Name="Код_сырья" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Заносится">
+          <End Role="ТОРГ_9_Упаковочный_ярлык" Type="Self.ТОРГ_9_Упаковочный_ярлык" Multiplicity="0..1" />
+          <End Role="ТОРГ_8_Заказ_отборочный_лист" Type="Self.ТОРГ_8_Заказ_отборочный_лист" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТОРГ_9_Упаковочный_ярлык">
+              <PropertyRef Name="Номер_строки_ТОРГ_9" />
+              <PropertyRef Name="Код_продукции" />
+            </Principal>
+            <Dependent Role="ТОРГ_8_Заказ_отборочный_лист">
+              <PropertyRef Name="Номер_строки_ТОРГ_9" />
+              <PropertyRef Name="Код_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Diploma_DB_of_VladkhlebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Брак" EntityType="Self.Брак" />
+          <EntitySet Name="ГОСТ" EntityType="Self.ГОСТ" />
+          <EntitySet Name="Готовая_партия" EntityType="Self.Готовая_партия" />
+          <EntitySet Name="Документ_Передача_брака_в_переработку" EntityType="Self.Документ_Передача_брака_в_переработку" />
+          <EntitySet Name="Должность" EntityType="Self.Должность" />
+          <EntitySet Name="Заказ_на_выпускаемую_продукцию" EntityType="Self.Заказ_на_выпускаемую_продукцию" />
+          <EntitySet Name="Заявка_на_поставку_сырья" EntityType="Self.Заявка_на_поставку_сырья" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" />
+          <EntitySet Name="Образец" EntityType="Self.Образец" />
+          <EntitySet Name="Подготовленное_сырье" EntityType="Self.Подготовленное_сырье" />
+          <EntitySet Name="Поставщик" EntityType="Self.Поставщик" />
+          <EntitySet Name="Прогноз_для_нового_сырья" EntityType="Self.Прогноз_для_нового_сырья" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" />
+          <EntitySet Name="Работник" EntityType="Self.Работник" />
+          <EntitySet Name="Разрешение_на_отправку" EntityType="Self.Разрешение_на_отправку" />
+          <EntitySet Name="Строка_графика_работ" EntityType="Self.Строка_графика_работ" />
+          <EntitySet Name="Строка_заказа_на_выпускаемую_продукцию" EntityType="Self.Строка_заказа_на_выпускаемую_продукцию" />
+          <EntitySet Name="Строка_заявки_на_поставку_сырья" EntityType="Self.Строка_заявки_на_поставку_сырья" />
+          <EntitySet Name="Строка_плана_перевозок" EntityType="Self.Строка_плана_перевозок" />
+          <EntitySet Name="Строка_учета_отпуска_сырья_в_производство" EntityType="Self.Строка_учета_отпуска_сырья_в_производство" />
+          <EntitySet Name="Сырье" EntityType="Self.Сырье" />
+          <EntitySet Name="Технология_производства" EntityType="Self.Технология_производства" />
+          <EntitySet Name="ТОРГ_1_Акт_о_приемке_товаров" EntityType="Self.ТОРГ_1_Акт_о_приемке_товаров" />
+          <EntitySet Name="ТОРГ_8_Заказ_отборочный_лист" EntityType="Self.ТОРГ_8_Заказ_отборочный_лист" />
+          <EntitySet Name="ТОРГ_9_Упаковочный_ярлык" EntityType="Self.ТОРГ_9_Упаковочный_ярлык" />
+          <EntitySet Name="Учет_отпуска_сырья_в_производство" EntityType="Self.Учет_отпуска_сырья_в_производство" />
+          <AssociationSet Name="Бракуется" Association="Self.Бракуется">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Брак" EntitySet="Брак" />
+          </AssociationSet>
+          <AssociationSet Name="Оперируется" Association="Self.Оперируется">
+            <End Role="Брак" EntitySet="Брак" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Описывает" Association="Self.Описывает">
+            <End Role="Документ_Передача_брака_в_переработку" EntitySet="Документ_Передача_брака_в_переработку" />
+            <End Role="Брак" EntitySet="Брак" />
+          </AssociationSet>
+          <AssociationSet Name="Регламентирует" Association="Self.Регламентирует">
+            <End Role="ГОСТ" EntitySet="ГОСТ" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Производит" Association="Self.Производит">
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+            <End Role="Готовая_партия" EntitySet="Готовая_партия" />
+          </AssociationSet>
+          <AssociationSet Name="Состоит_из" Association="Self.Состоит_из">
+            <End Role="Готовая_партия" EntitySet="Готовая_партия" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет_нет" Association="Self.Определяет_нет">
+            <End Role="Образец" EntitySet="Образец" />
+            <End Role="Документ_Передача_брака_в_переработку" EntitySet="Документ_Передача_брака_в_переработку" />
+          </AssociationSet>
+          <AssociationSet Name="Имеет_принадлежит" Association="Self.Имеет_принадлежит">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Работник" EntitySet="Работник" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит_входит" Association="Self.Содержит_входит">
+            <End Role="Заказ_на_выпускаемую_продукцию" EntitySet="Заказ_на_выпускаемую_продукцию" />
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит" Association="Self.Содержит">
+            <End Role="Заявка_на_поставку_сырья" EntitySet="Заявка_на_поставку_сырья" />
+            <End Role="Строка_заявки_на_поставку_сырья" EntitySet="Строка_заявки_на_поставку_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Закреплен_за" Association="Self.Закреплен_за">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Оборудование" EntitySet="Оборудование" />
+          </AssociationSet>
+          <AssociationSet Name="Эксплуатируется" Association="Self.Эксплуатируется">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет_да" Association="Self.Определяет_да">
+            <End Role="Образец" EntitySet="Образец" />
+            <End Role="Разрешение_на_отправку" EntitySet="Разрешение_на_отправку" />
+          </AssociationSet>
+          <AssociationSet Name="Предоставляет" Association="Self.Предоставляет">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Образец" EntitySet="Образец" />
+          </AssociationSet>
+          <AssociationSet Name="Вносится_в" Association="Self.Вносится_в">
+            <End Role="Подготовленное_сырье" EntitySet="Подготовленное_сырье" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается" Association="Self.Записывается">
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+            <End Role="Подготовленное_сырье" EntitySet="Подготовленное_сырье" />
+          </AssociationSet>
+          <AssociationSet Name="Имеет_Имеется_у" Association="Self.Имеет_Имеется_у">
+            <End Role="Поставщик" EntitySet="Поставщик" />
+            <End Role="Сырье" EntitySet="Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="Анализируется" Association="Self.Анализируется">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Принимается" Association="Self.Принимается">
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+            <End Role="Строка_заявки_на_поставку_сырья" EntitySet="Строка_заявки_на_поставку_сырья" />
+          </AssociationSet>
+          <AssociationSet Name="Учитывается_Учитывает" Association="Self.Учитывается_Учитывает">
+            <End Role="Прогноз_для_нового_сырья" EntitySet="Прогноз_для_нового_сырья" />
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+          </AssociationSet>
+          <AssociationSet Name="Вносится" Association="Self.Вносится">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="ТОРГ_9_Упаковочный_ярлык" EntitySet="ТОРГ_9_Упаковочный_ярлык" />
+          </AssociationSet>
+          <AssociationSet Name="Заключает" Association="Self.Заключает">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+          <AssociationSet Name="Придерживается" Association="Self.Придерживается">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Следует" Association="Self.Следует">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Составляет" Association="Self.Составляет">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="ТОРГ_1_Акт_о_приемке_товаров" EntitySet="ТОРГ_1_Акт_о_приемке_товаров" />
+          </AssociationSet>
+          <AssociationSet Name="Заносится_в" Association="Self.Заносится_в">
+            <End Role="Разрешение_на_отправку" EntitySet="Разрешение_на_отправку" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+          <AssociationSet Name="Строит" Association="Self.Строит">
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Учитывается" Association="Self.Учитывается">
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+            <End Role="Строка_графика_работ" EntitySet="Строка_графика_работ" />
+          </AssociationSet>
+          <AssociationSet Name="Согласовывается" Association="Self.Согласовывается">
+            <End Role="Строка_заказа_на_выпускаемую_продукцию" EntitySet="Строка_заказа_на_выпускаемую_продукцию" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Определяет" Association="Self.Определяет">
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+            <End Role="Строка_плана_перевозок" EntitySet="Строка_плана_перевозок" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается_в" Association="Self.Записывается_в">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Содержит_индексируется" Association="Self.Содержит_индексируется">
+            <End Role="Учет_отпуска_сырья_в_производство" EntitySet="Учет_отпуска_сырья_в_производство" />
+            <End Role="Строка_учета_отпуска_сырья_в_производство" EntitySet="Строка_учета_отпуска_сырья_в_производство" />
+          </AssociationSet>
+          <AssociationSet Name="Записывается_Описывает" Association="Self.Записывается_Описывает">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="ТОРГ_1_Акт_о_приемке_товаров" EntitySet="ТОРГ_1_Акт_о_приемке_товаров" />
+          </AssociationSet>
+          <AssociationSet Name="Используется" Association="Self.Используется">
+            <End Role="Сырье" EntitySet="Сырье" />
+            <End Role="Технология_производства" EntitySet="Технология_производства" />
+          </AssociationSet>
+          <AssociationSet Name="Заносится" Association="Self.Заносится">
+            <End Role="ТОРГ_9_Упаковочный_ярлык" EntitySet="ТОРГ_9_Упаковочный_ярлык" />
+            <End Role="ТОРГ_8_Заказ_отборочный_лист" EntitySet="ТОРГ_8_Заказ_отборочный_лист" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Diploma_DB_of_VladkhlebModelContainer" CdmEntityContainer="Diploma_DB_of_VladkhlebEntities">
+          <EntitySetMapping Name="Брак">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Брак">
+              <MappingFragment StoreEntitySet="Брак">
+                <ScalarProperty Name="Код_брака" ColumnName="Код_брака" />
+                <ScalarProperty Name="Номер_документа_о_браке" ColumnName="Номер_документа_о_браке" />
+                <ScalarProperty Name="Код_образца" ColumnName="Код_образца" />
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ГОСТ">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.ГОСТ">
+              <MappingFragment StoreEntitySet="ГОСТ">
+                <ScalarProperty Name="Код_ГОСТа" ColumnName="Код_ГОСТа" />
+                <ScalarProperty Name="Наименование_ГОСТа" ColumnName="Наименование_ГОСТа" />
+                <ScalarProperty Name="Количество_жиров" ColumnName="Количество_жиров" />
+                <ScalarProperty Name="Количество_углеводов" ColumnName="Количество_углеводов" />
+                <ScalarProperty Name="Количество_белков" ColumnName="Количество_белков" />
+                <ScalarProperty Name="Наименование_пищевых_добавок" ColumnName="Наименование_пищевых_добавок" />
+                <ScalarProperty Name="Количество_каллорий" ColumnName="Количество_каллорий" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Готовая_партия">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Готовая_партия">
+              <MappingFragment StoreEntitySet="Готовая_партия">
+                <ScalarProperty Name="Код_готовой_партии" ColumnName="Код_готовой_партии" />
+                <ScalarProperty Name="Код_производственного_процесса" ColumnName="Код_производственного_процесса" />
+                <ScalarProperty Name="Дата_и_время_изготовления_гп" ColumnName="Дата_и_время_изготовления_гп" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Документ_Передача_брака_в_переработку">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Документ_Передача_брака_в_переработку">
+              <MappingFragment StoreEntitySet="Документ_Передача_брака_в_переработку">
+                <ScalarProperty Name="Номер_документа_о_браке" ColumnName="Номер_документа_о_браке" />
+                <ScalarProperty Name="Код_образца" ColumnName="Код_образца" />
+                <ScalarProperty Name="Дата_и_время_док_брак" ColumnName="Дата_и_время_док_брак" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должность">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Должность">
+              <MappingFragment StoreEntitySet="Должность">
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+                <ScalarProperty Name="Наименование_должности" ColumnName="Наименование_должности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заказ_на_выпускаемую_продукцию">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Заказ_на_выпускаемую_продукцию">
+              <MappingFragment StoreEntitySet="Заказ_на_выпускаемую_продукцию">
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Наименование_заказа" ColumnName="Наименование_заказа" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заявка_на_поставку_сырья">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Заявка_на_поставку_сырья">
+              <MappingFragment StoreEntitySet="Заявка_на_поставку_сырья">
+                <ScalarProperty Name="Код_заявки" ColumnName="Код_заявки" />
+                <ScalarProperty Name="Наименование_заявки" ColumnName="Наименование_заявки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оборудование">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Оборудование">
+              <MappingFragment StoreEntitySet="Оборудование">
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+                <ScalarProperty Name="Код_оборудования" ColumnName="Код_оборудования" />
+                <ScalarProperty Name="Наименование_оборудования" ColumnName="Наименование_оборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Образец">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Образец">
+              <MappingFragment StoreEntitySet="Образец">
+                <ScalarProperty Name="Код_образца" ColumnName="Код_образца" />
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Подготовленное_сырье">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Подготовленное_сырье">
+              <MappingFragment StoreEntitySet="Подготовленное_сырье">
+                <ScalarProperty Name="Код_подготовленного_сырья" ColumnName="Код_подготовленного_сырья" />
+                <ScalarProperty Name="Код_учета" ColumnName="Код_учета" />
+                <ScalarProperty Name="Номер_строки_учета_отпуска" ColumnName="Номер_строки_учета_отпуска" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Номер_строки_заказа_на_выпускаемую_продукцию" ColumnName="Номер_строки_заказа_на_выпускаемую_продукцию" />
+                <ScalarProperty Name="Наименование_подготовленного_сырья" ColumnName="Наименование_подготовленного_сырья" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поставщик">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Поставщик">
+              <MappingFragment StoreEntitySet="Поставщик">
+                <ScalarProperty Name="Код_поставщика" ColumnName="Код_поставщика" />
+                <ScalarProperty Name="Наименование_поставщика" ColumnName="Наименование_поставщика" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ИНН" ColumnName="ИНН" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Прогноз_для_нового_сырья">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Прогноз_для_нового_сырья">
+              <MappingFragment StoreEntitySet="Прогноз_для_нового_сырья">
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Количество_прогнозируемого_сырья" ColumnName="Количество_прогнозируемого_сырья" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продукция">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Продукция">
+              <MappingFragment StoreEntitySet="Продукция">
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+                <ScalarProperty Name="Код_готовой_партии" ColumnName="Код_готовой_партии" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Ед_измерения" ColumnName="Ед_измерения" />
+                <ScalarProperty Name="НДС" ColumnName="НДС" />
+                <ScalarProperty Name="Масса" ColumnName="Масса" />
+                <ScalarProperty Name="Дата_и_время_изготовления_пр" ColumnName="Дата_и_время_изготовления_пр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Работник">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Работник">
+              <MappingFragment StoreEntitySet="Работник">
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+                <ScalarProperty Name="ФИО_работника" ColumnName="ФИО_работника" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+                <ScalarProperty Name="Номер_бригады" ColumnName="Номер_бригады" />
+                <ScalarProperty Name="Имя_пользователя" ColumnName="Имя_пользователя" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Разрешение_на_отправку">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Разрешение_на_отправку">
+              <MappingFragment StoreEntitySet="Разрешение_на_отправку">
+                <ScalarProperty Name="Код_разрешения_на_отправку" ColumnName="Код_разрешения_на_отправку" />
+                <ScalarProperty Name="Код_образца" ColumnName="Код_образца" />
+                <ScalarProperty Name="Дата_и_время_РазрОтпр" ColumnName="Дата_и_время_РазрОтпр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Строка_графика_работ">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Строка_графика_работ">
+              <MappingFragment StoreEntitySet="Строка_графика_работ">
+                <ScalarProperty Name="Номер_строки_графика_работ" ColumnName="Номер_строки_графика_работ" />
+                <ScalarProperty Name="Время_начала_смены" ColumnName="Время_начала_смены" />
+                <ScalarProperty Name="Время_окончания_смены" ColumnName="Время_окончания_смены" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Номер_строки_заказа_на_выпускаемую_продукцию" ColumnName="Номер_строки_заказа_на_выпускаемую_продукцию" />
+                <ScalarProperty Name="Код_производственного_процесса" ColumnName="Код_производственного_процесса" />
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Строка_заказа_на_выпускаемую_продукцию">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Строка_заказа_на_выпускаемую_продукцию">
+              <MappingFragment StoreEntitySet="Строка_заказа_на_выпускаемую_продукцию">
+                <ScalarProperty Name="Номер_строки_заказа_на_выпускаемую_продукцию" ColumnName="Номер_строки_заказа_на_выпускаемую_продукцию" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Количество_выпускаемой_продукции" ColumnName="Количество_выпускаемой_продукции" />
+                <ScalarProperty Name="Дата_и_время_заказа_на_ВыпПрод" ColumnName="Дата_и_время_заказа_на_ВыпПрод" />
+                <ScalarProperty Name="Наименование_выпускаемой_продукции" ColumnName="Наименование_выпускаемой_продукции" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Строка_заявки_на_поставку_сырья">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Строка_заявки_на_поставку_сырья">
+              <MappingFragment StoreEntitySet="Строка_заявки_на_поставку_сырья">
+                <ScalarProperty Name="Номер_строки_заявки" ColumnName="Номер_строки_заявки" />
+                <ScalarProperty Name="Количество_поставляемого_сырья" ColumnName="Количество_поставляемого_сырья" />
+                <ScalarProperty Name="Дата_и_время_поставки_сырья" ColumnName="Дата_и_время_поставки_сырья" />
+                <ScalarProperty Name="Код_заявки" ColumnName="Код_заявки" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Строка_плана_перевозок">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Строка_плана_перевозок">
+              <MappingFragment StoreEntitySet="Строка_плана_перевозок">
+                <ScalarProperty Name="Код_строки_плана_перевозок" ColumnName="Код_строки_плана_перевозок" />
+                <ScalarProperty Name="Адрес_назначения" ColumnName="Адрес_назначения" />
+                <ScalarProperty Name="Время_отъезда" ColumnName="Время_отъезда" />
+                <ScalarProperty Name="Время_в_пути" ColumnName="Время_в_пути" />
+                <ScalarProperty Name="Время_прибытия" ColumnName="Время_прибытия" />
+                <ScalarProperty Name="Номер_строки_ТОРГ_8" ColumnName="Номер_строки_ТОРГ_8" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Строка_учета_отпуска_сырья_в_производство">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Строка_учета_отпуска_сырья_в_производство">
+              <MappingFragment StoreEntitySet="Строка_учета_отпуска_сырья_в_производство">
+                <ScalarProperty Name="Код_учета" ColumnName="Код_учета" />
+                <ScalarProperty Name="Номер_строки_учета_отпуска" ColumnName="Номер_строки_учета_отпуска" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Количество_отпускаемого_сырья" ColumnName="Количество_отпускаемого_сырья" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Номер_строки_заказа_на_выпускаемую_продукцию" ColumnName="Номер_строки_заказа_на_выпускаемую_продукцию" />
+                <ScalarProperty Name="Дата_и_время_отпуска_со_склада" ColumnName="Дата_и_время_отпуска_со_склада" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сырье">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Сырье">
+              <MappingFragment StoreEntitySet="Сырье">
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Наименование_сырья" ColumnName="Наименование_сырья" />
+                <ScalarProperty Name="Ед_измерения" ColumnName="Ед_измерения" />
+                <ScalarProperty Name="Код_поставщика" ColumnName="Код_поставщика" />
+                <ScalarProperty Name="Масса" ColumnName="Масса" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Технология_производства">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Технология_производства">
+              <MappingFragment StoreEntitySet="Технология_производства">
+                <ScalarProperty Name="Код_ГОСТа" ColumnName="Код_ГОСТа" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Код_подготовленного_сырья" ColumnName="Код_подготовленного_сырья" />
+                <ScalarProperty Name="Код_оборудования" ColumnName="Код_оборудования" />
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+                <ScalarProperty Name="Код_брака" ColumnName="Код_брака" />
+                <ScalarProperty Name="Время_начала_производственного_процесса" ColumnName="Время_начала_производственного_процесса" />
+                <ScalarProperty Name="Время_окончания_производственного_процесса" ColumnName="Время_окончания_производственного_процесса" />
+                <ScalarProperty Name="Наименование_производственного_процесса" ColumnName="Наименование_производственного_процесса" />
+                <ScalarProperty Name="Код_производственного_процесса" ColumnName="Код_производственного_процесса" />
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТОРГ_1_Акт_о_приемке_товаров">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.ТОРГ_1_Акт_о_приемке_товаров">
+              <MappingFragment StoreEntitySet="ТОРГ_1_Акт_о_приемке_товаров">
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+                <ScalarProperty Name="Номер_строки_ТОРГ_1" ColumnName="Номер_строки_ТОРГ_1" />
+                <ScalarProperty Name="Код_сырья" ColumnName="Код_сырья" />
+                <ScalarProperty Name="Дата_и_время_ТОРГ_1" ColumnName="Дата_и_время_ТОРГ_1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТОРГ_8_Заказ_отборочный_лист">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.ТОРГ_8_Заказ_отборочный_лист">
+              <MappingFragment StoreEntitySet="ТОРГ_8_Заказ_отборочный_лист">
+                <ScalarProperty Name="Номер_строки_ТОРГ_8" ColumnName="Номер_строки_ТОРГ_8" />
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+                <ScalarProperty Name="Код_разрешения_на_отправку" ColumnName="Код_разрешения_на_отправку" />
+                <ScalarProperty Name="Код_работника" ColumnName="Код_работника" />
+                <ScalarProperty Name="Номер_строки_ТОРГ_9" ColumnName="Номер_строки_ТОРГ_9" />
+                <ScalarProperty Name="Дата_и_время_ТОРГ_8" ColumnName="Дата_и_время_ТОРГ_8" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТОРГ_9_Упаковочный_ярлык">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.ТОРГ_9_Упаковочный_ярлык">
+              <MappingFragment StoreEntitySet="ТОРГ_9_Упаковочный_ярлык">
+                <ScalarProperty Name="Номер_строки_ТОРГ_9" ColumnName="Номер_строки_ТОРГ_9" />
+                <ScalarProperty Name="Код_продукции" ColumnName="Код_продукции" />
+                <ScalarProperty Name="Дата_и_время_ТОРГ_9" ColumnName="Дата_и_время_ТОРГ_9" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учет_отпуска_сырья_в_производство">
+            <EntityTypeMapping TypeName="Diploma_DB_of_VladkhlebModel.Учет_отпуска_сырья_в_производство">
+              <MappingFragment StoreEntitySet="Учет_отпуска_сырья_в_производство">
+                <ScalarProperty Name="Код_учета" ColumnName="Код_учета" />
+                <ScalarProperty Name="Наименование_учета" ColumnName="Наименование_учета" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

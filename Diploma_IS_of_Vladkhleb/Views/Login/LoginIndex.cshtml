@@ -1,0 +1,50 @@
+﻿@model Diploma_IS_of_Vladkhleb.Models.Работник
+
+@{
+    ViewBag.Title = "LoginIndex";
+}
+
+<h2>LoginIndex</h2>
+@using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
+{
+    //this  is for create form tag
+    @Html.AntiForgeryToken() // this is for prevent CSRF attack
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border: 1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(a => a.Имя_пользователя)</td>
+            <td>@Html.TextBoxFor(a => a.Имя_пользователя)</td>
+            <td>@Html.ValidationMessageFor(a => a.Имя_пользователя)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.Пароль)
+            </td>
+            <td>
+                @Html.PasswordFor(a => a.Пароль)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.Пароль)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Войти" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+
+@* This below line is for create javascript section *@
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

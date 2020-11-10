@@ -1,0 +1,25 @@
+﻿@model Diploma_IS_of_Vladkhleb.Models.Работник
+
+@{
+    ViewBag.Title = "Выбор должности";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Выбор должности и вход в систему</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Должность</legend>
+
+        <p>
+            Должность <br />
+            @Html.DropDownListFor(model => model.Код_должности, ViewBag.Должностьs as SelectList)
+        </p>
+
+        <p>
+            <input type="submit" value="Подтвердить" />
+        </p>
+
+    </fieldset>
+}

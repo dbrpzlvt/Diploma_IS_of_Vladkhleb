@@ -1,0 +1,85 @@
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 > #backgroundBox {
+  background-color: transparent;
+  background-image: none;
+  position: absolute;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 > #alignmentBox {
+  position: relative;
+  max-width: 1920px;
+  max-height: 1080px;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 > .backgroundLayer {
+  height: calc(100% + -2px);
+  width: calc(100% + -2px);
+  background-color: transparent;
+  background-image: -moz-linear-gradient(top,#FFFFFF,#E6E6E6);
+  background-image: -webkit-linear-gradient(top,#FFFFFF,#E6E6E6);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#FFFFFF), color-stop(100%,#E6E6E6));
+  background-image: -o-linear-gradient(top,#FFFFFF,#E6E6E6);
+  background-image: linear-gradient(to bottom,#FFFFFF,#E6E6E6);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #CDCDCD;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #CDCDCD;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #CDCDCD;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #CDCDCD;
+  box-shadow: none;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 {
+  position: absolute;
+  width: 223px;
+  height: 29px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  transform: rotate(0deg);
+  text-shadow: none;
+  cursor: pointer;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  font-size: 10.0pt;
+  font-family: 'Arial',Arial;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 > .clipping, #s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 > .paddingLayer {
+  height: 27px;
+  width: 221px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 .valign {
+  vertical-align: middle;
+  text-align: center;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 span {
+  color: #030303;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Arial',Arial;
+  font-size: 10.0pt;
+  font-style: normal;
+  font-weight: 400;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 #s-Button_1 span#rtr-s-Button_1_0 {
+  color: #030303;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Arial',Arial;
+  font-size: 10.0pt;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0px;
+}
+#s-b08d8c20-596a-4bd6-9d9b-f06007eef8d3 > #loadMark {
+  width: 1px;
+  visibility: hidden;
+  display: none;
+}

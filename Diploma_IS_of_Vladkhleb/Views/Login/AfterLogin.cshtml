@@ -1,0 +1,19 @@
+﻿@model Diploma_IS_of_Vladkhleb.Models.Работник
+
+@{
+    ViewBag.Title = "AfterLogin";
+}
+
+@if (Session["LogedUserFullname"] != null)
+{
+    <text>
+        Добро пожаловать, @Session["LogedUserFullname"].ToString()
+    </text>
+}
+
+<tr>
+    <td></td>
+    <td>
+        <input type="submit" value="Продолжить" />
+    </td>
+    <td></td>

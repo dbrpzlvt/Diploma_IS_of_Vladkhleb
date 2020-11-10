@@ -1,0 +1,47 @@
+﻿@model Diploma_IS_of_Vladkhleb.Models.Сырье
+
+@{
+    ViewBag.Title = "Добавление сырья";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавление нового вида сырья</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Вид сырья</legend>
+
+        <p>
+            Наименование сырья <br />
+            @Html.EditorFor(model => model.Наименование_сырья)
+        </p>
+
+        <p>
+            Масса сырья <br />
+            @Html.EditorFor(model => model.Масса)
+        </p>
+
+        <p>
+            Количество <br />
+            @Html.EditorFor(model => model.Количество)
+        </p>
+
+        <p>
+            Единица измерения  <br />
+            @Html.EditorFor(model => model.Ед_измерения)
+        </p>
+
+        <p>
+            Поставщик сырья <br />
+            @Html.DropDownListFor(model => model.Код_поставщика, ViewBag.Поставщикs as SelectList)
+        </p>
+
+        <p>
+            <input type="submit" value="Добавить сырье" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("К списку видов сырья", "Index")
+</div>

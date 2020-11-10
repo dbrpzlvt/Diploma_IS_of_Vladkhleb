@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1080e0b1ce394d62a4b7a031404321d1" Name="Diagram1">
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Брак" Width="1.5" PointX="26.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.ГОСТ" Width="1.5" PointX="13" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Готовая_партия" Width="1.5" PointX="17.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Документ_Передача_брака_в_переработку" Width="1.5" PointX="24.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Должность" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Заказ_на_выпускаемую_продукцию" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Заявка_на_поставку_сырья" Width="1.5" PointX="8.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Оборудование" Width="1.5" PointX="13" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Образец" Width="1.5" PointX="22" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Подготовленное_сырье" Width="1.5" PointX="12" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Поставщик" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Прогноз_для_нового_сырья" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Продукция" Width="1.5" PointX="19.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Работник" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Разрешение_на_отправку" Width="1.5" PointX="24.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Строка_графика_работ" Width="1.5" PointX="12.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Строка_заказа_на_выпускаемую_продукцию" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Строка_заявки_на_поставку_сырья" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Строка_плана_перевозок" Width="1.5" PointX="28.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Строка_учета_отпуска_сырья_в_производство" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Сырье" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Технология_производства" Width="1.5" PointX="15.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.ТОРГ_1_Акт_о_приемке_товаров" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.ТОРГ_8_Заказ_отборочный_лист" Width="1.5" PointX="26.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.ТОРГ_9_Упаковочный_ярлык" Width="1.5" PointX="22" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diploma_DB_of_VladkhlebModel.Учет_отпуска_сырья_в_производство" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Бракуется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Оперируется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Описывает" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Регламентирует" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Производит" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Состоит_из" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Определяет_нет" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Имеет_принадлежит" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Содержит_входит" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Содержит" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Закреплен_за" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Эксплуатируется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Определяет_да" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Предоставляет" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Вносится_в" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Записывается" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Имеет_Имеется_у" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Анализируется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Принимается" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Учитывается_Учитывает" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Вносится" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Заключает" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Придерживается" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Следует" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Составляет" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Заносится_в" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Строит" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Учитывается" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Согласовывается" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Определяет" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Записывается_в" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Содержит_индексируется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Записывается_Описывает" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Используется" ManuallyRouted="false" />
+        <AssociationConnector Association="Diploma_DB_of_VladkhlebModel.Заносится" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
